@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <!-- titulo e icono -->
+    <title>BOOKS</title>
+    <link rel="icon" href="{{ url_for('static', filename='image/notebook.png') }}" type="image/png">
+    <!-- Hojas de estilo -->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/base.css')}}">
+    {% block head %}
+    {% endblock %}
+  </head>
+  <body>
+
+    <!-- encabezado  -->
+    <header class="header">
+      <div class="logo"><a href="/">
+        <img src="{{ url_for('static', filename='image/notebook.png') }}" alt="Logo">
+        <b>Gestor de Libros</b>
+      </a></div>
+    </header>
+    <div class="container">
+      {% block body %}
+      {% endblock %}
+    </div>
+
+    <!-- footer -->
+    <!-- scripts -->
+    <script src="{{url_for('static', filename='js/scripts.js')}}"></script>
+  </body>
+</html>

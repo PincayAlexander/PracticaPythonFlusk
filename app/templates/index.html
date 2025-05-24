@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block head %}
+  <link rel="stylesheet" href="{{url_for('static', filename='css/alert.css')}}">
+  <link rel="stylesheet" href="{{url_for('static', filename='css/forms.css')}}">
+  <link rel="stylesheet" href="{{url_for('static', filename='css/table.css')}}">
+{% endblock %}
+
+{% block body %}
+  <div class="form__container">
+    <!-- Mensajes de alerta -->
+    {% with mensajes = get_flashed_messages(with_categories=true)  %}
+    {% if mensajes %}
+    {% for categoria, mensaje in mensajes %}
+    <div class="alert alert__{{ categoria }}" role="alert">
+      <p>{{ mensaje }}</p>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    <div class="form form__book">
+      <form action="{{ url_for('book.update', id=edit_book.id) if edit_book else url_for('book.add') }}" method="POST">
+        <div class="form__group">
+          <input type="text" class="form__input" name="title" placeholder="Título"
+                value="{{ edit_book.title if edit_book else '' }}" required>
+        </div>
+        <div class="form__group">
+          <input type="text" class="form__input" name="author" placeholder="Autor"
+                value="{{ edit_book.author if edit_book else '' }}" required>
+        </div>
+        <div class="form__group">
+          <input type="text" class="form__input" name="genre" placeholder="Género"
+                value="{{ edit_book.genre if edit_book else '' }}">
+        </div>
+        <div class="form__group">
+          <input type="date" class="form__input" name="publication" placeholder="Fecha de publicación"
+                value="{{ edit_book.publication if edit_book else '' }}">
+        </div>
+        <div class="form__group">
+          <input type="number" class="form__input" name="rating" placeholder="Puntaje (0.0 – 10.0)"
+                value="{{ edit_book.rating if edit_book else '' }}" step="0.1" min="0" max="10">
+        </div>
+        <div class="form__group">
+          <select class="form__input" name="status" required>
+            <option value="" disabled {% if not edit_book %}selected{% endif %}>Estado</option>
+            <option value="leido" {% if edit_book.status == 'leido' %}selected{% endif %}>Leído</option>
+            <option value="por_leer" {% if edit_book.status == 'por_leer' %}selected{% endif %}>Por leer</option>
+          </select>
+        </div>
+        <div class="form__group">
+          <textarea class="form__input" name="notes" placeholder="Notas" rows="4">{{ edit_book.notes if edit_book else '' }}</textarea>
+        </div>
+        <div class="form__buttons">
+          <button class="button btn__save">{{ 'Actualizar' if edit_book else 'Guardar' }}</button>          
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="table__container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Título</th>
+          <th>Autor</th>
+          <th>Género</th>
+          <th>Año</th>
+          <th>Puntaje</th>
+          <th>Estado</th>
+          <th>Notas</th>
+          <th>Operaciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for lib in libros %}
+        <tr>
+          <td>{{lib.id}}</td>
+          <td class="trucate">{{lib.title}}</td>
+          <td>{{lib.author}}</td>
+          <td>{{lib.genre}}</td>
+          <td>{{lib.publication}}</td>
+          <td>{{lib.rating}}</td>
+          <td>{{lib.status}}</td>
+          <td>{{lib.notes}}</td>
+          <td class="table__operations trucate">
+            <a href="{{url_for('book.index', id=lib.id)}}" class="button btn__edit">Editar</a>
+            <a href="{{url_for('book.delete', id=lib.id)}}" class="button btn__delete">Borrar</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+{% endblock %}

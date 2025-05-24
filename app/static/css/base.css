@@ -1,0 +1,96 @@
+*{
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background: #dcedbd;
+  background: -webkit-linear-gradient(to right, #5cc366, #dcedbd);
+  background: linear-gradient(to right, #5cc366, #dcedbd);
+  font-family: consolas, sans-serif;
+  width: 100dvw;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  width: 100%;
+  height: 8%;
+  padding: 2rem 1rem 1rem 1rem;
+  border: 2px solid fff;
+}
+
+.logo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 30px;
+}
+
+.logo a {
+  text-decoration: none;
+  font-size: 2.8rem;
+  font-weight: 800;
+  white-space: nowrap;
+  color: #fff;
+}
+
+.logo img {
+  width: 2.5rem;
+  height: 2.5rem;
+  filter: brightness(0) invert(1);
+  margin-right: 3px;
+}
+
+.container {
+  width: 100%;
+  height: 90%;
+  padding-top: 1.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+/* Botones */
+.button {
+  padding: 0.4rem 0.75rem;
+  font-family: consolas;
+  font-size: .8rem;
+  text-align: center;
+  border: none;
+  border-radius: 6px;
+  text-decoration: none;
+  color: #fff;
+  width: 5rem;
+  margin-right: .25rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn__save {
+  background-color: #007bff;
+
+}
+
+.button.btn__save:hover {
+  background-color: #0056b3;
+}
+
+.btn__edit {
+  background-color: #17a2b8;
+}
+
+.btn__edit:hover {
+  background-color: #138496;
+}
+
+.btn__delete {
+  background-color: #dc3545;
+}
+
+.btn__delete:hover {
+  background-color: #c82333;
+}
