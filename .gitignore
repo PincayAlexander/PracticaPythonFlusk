@@ -4,14 +4,3 @@ __pycache__/
 
 # pyenv
 .python-version
-
-# virtualenv
-venv/
-ENV/
-env/
-#.env/
-.venv/
-ENV/
-env.bak/
-venv.bak/
-bookEnv/

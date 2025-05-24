@@ -2,7 +2,10 @@
 
 ### Instalación
 ```bash
-git clone 
+git clone https://github.com/PincayAlexander/PracticaPythonFlusk.git
+cd PracticaPythonFlusk
+# En Windows:
+bookEnv\Scripts\activate
 pip install -r requirements.txt
 ```
 
